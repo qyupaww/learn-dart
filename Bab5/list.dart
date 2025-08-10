@@ -1,5 +1,14 @@
 void main(List<String> args) {
-  List<int> nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  print(nums[8]);
-  print(nums.length);
+  List<String> buah = ['Apel', 'Jeruk', 'Mangga', 'Apel'];
+
+  // Mengakses elemen berdasarkan indeks (dimulai dari 0)
+  print(buah[0]);
+  print(buah[2]);
+
+  // Menambahkan elemen baru di akhir list
+  buah.add('Pisang');
+  print(buah);
+
+  // Duplikasi diperbolehkan
+  print(buah.length); // Output: 5 (elemen 'Apel' ada dua)
 }
