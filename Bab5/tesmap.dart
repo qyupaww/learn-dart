@@ -1,24 +1,21 @@
 void main(List<String> args) {
-  var numbers = <int, String>{
-    1: "one",
-    2: "two",
-    3: "three",
-    4: "four",
-    5: "five",
+  // Membuat Map untuk data diri
+  Map<String, dynamic> dataDiri = {
+    'nama': 'Isal',
+    'umur': 22,
+    'pekerjaan': 'Mobile Dev',
+    'sudahMenikah': false,
   };
 
-  print(numbers);
-  print(numbers[2]);
+  // Mengakses nilai menggunakan kuncinya
+  print(dataDiri['nama']);
+  print(dataDiri['umur']);
 
-  var akmj = <String, String>{
-    "Wowo": "Omke Gasm",
-    "Girban": "Hilirisasi",
-    "Owi": "Wi Wok De Tok",
-    "Bahlil": "Ganteng",
-    "Budi Arie": "GOBLOK",
-  };
-  print(akmj);
+  // Mengubah nilai
+  dataDiri['pekerjaan'] = 'Fullstack Mobile Dev';
+  print(dataDiri);
 
-  akmj["Anis"] = "Intelek";
-  print(akmj["Anis"]);
+  // Menambahkan pasangan kunci-nilai baru
+  dataDiri['kota'] = 'Bandung';
+  print(dataDiri['kota']); // Output: Bandung
 }
