@@ -1,4 +1,54 @@
-void main(List<String> args) {}
+void main(List<String> args) {
+  var yasuoGA = GeneralAccount(
+    accountName: "yasuo",
+    accountId: "yasuo090",
+    accountType: AccountType.general,
+    balance: 900000,
+    openingDate: DateTime(2024, 8, 21),
+  );
+
+  var yasuoSA = SavingAccount(
+    accountName: "yasuo",
+    accountId: "yasuo090",
+    accountType: AccountType.saving,
+    balance: 1000000,
+    openingDate: DateTime(2024, 8, 21),
+  );
+
+  var yasuoIA = InvestAccount(
+    accountName: "yasuo",
+    accountId: "yasuo090",
+    accountType: AccountType.invest,
+    balance: 1000000,
+    openingDate: DateTime.now(),
+    investedBalance: 500000,
+  );
+
+  print(yasuoIA.getCurrentBalance());
+
+  print(
+    'General Account - Name: ${yasuoGA.accountName}, ID: ${yasuoGA.accountId}, Current Balance: ${yasuoGA.getCurrentBalance()}',
+  );
+  print(
+    'Saving Account - Name: ${yasuoSA.accountName}, ID: ${yasuoSA.accountId}, Current Balance: ${yasuoSA.getCurrentBalance()}',
+  );
+  print(
+    'Invest Account - Name: ${yasuoIA.accountName}, ID: ${yasuoIA.accountId}, Current Balance: ${yasuoIA.getCurrentBalance()}',
+  );
+
+  print('Deposit 100000 to General Account: ${yasuoGA.deposit(100000)}');
+  print('Withdraw 50000 from General Account: ${yasuoGA.withdraw(50000)}');
+
+  print('Deposit 600000 to Saving Account: ${yasuoSA.deposit(600000)}');
+  try {
+    print('Withdraw 100000 from Saving Account: ${yasuoSA.withdraw(100000)}');
+  } catch (e) {
+    print('Saving Account withdraw error: $e');
+  }
+
+  print('Deposit 1500000 to Invest Account: ${yasuoIA.deposit(1500000)}');
+  print('Withdraw 200000 from Invest Account: ${yasuoIA.withdraw(200000)}');
+}
 
 enum AccountType { saving, invest, general }
 
