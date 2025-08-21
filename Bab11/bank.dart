@@ -43,7 +43,7 @@ class GeneralAccount extends Account {
     required AccountType accountType,
     required int balance,
     required DateTime openingDate,
-    required DateTime? closingDate,
+    DateTime? closingDate,
   }) : super(
          accountName: accountName,
          accountId: accountId,
@@ -70,7 +70,7 @@ class SavingAccount extends Account {
     required AccountType accountType,
     required int balance,
     required DateTime openingDate,
-    required DateTime? closingDate,
+    DateTime? closingDate,
   }) : super(
          accountName: accountName,
          accountId: accountId,
@@ -95,5 +95,91 @@ class SavingAccount extends Account {
   }
 
   @override
-  int withdraw(int amount) => super.withdraw(amount);
+  int withdraw(int amount) {
+    if (DateTime.now().difference(openingDate).inDays < 90) {
+      throw Exception("You can withdraw after 90 days");
+    } else {
+      if (balance < amount) {
+        throw Exception("Your balance isn't enough");
+      } else {
+        balance -= amount;
+        return balance;
+      }
+    }
+  }
+
+  int getInterest() {
+    int interest = (balance * 0.04).floor();
+    balance += interest;
+    return balance;
+  }
+}
+
+class InvestAccount extends Account {
+  int investedBalance;
+
+  InvestAccount({
+    required String accountName,
+    required String accountId,
+    required AccountType accountType,
+    required int balance,
+    required DateTime openingDate,
+    DateTime? closingDate,
+    required this.investedBalance,
+  }) : super(
+         accountName: accountName,
+         accountId: accountId,
+         accountType: accountType,
+         balance: balance,
+         openingDate: openingDate,
+         closingDate: closingDate,
+       );
+
+  int getCurrentInvestedBalance() => investedBalance;
+
+  @override
+  int getCurrentBalance() => super.getCurrentBalance();
+
+  @override
+  int deposit(int amount) {
+    if (amount > 1000000) {
+      balance = balance + amount + 25000;
+    } else {
+      balance += amount;
+    }
+    return balance;
+  }
+
+  @override
+  int withdraw(int amount) {
+    int calculateTax = (amount * 0.025).floor();
+    if (balance < amount + calculateTax) {
+      throw Exception("Your balance isn't enough");
+    } else {
+      balance -= (amount + calculateTax);
+      return balance;
+    }
+  }
+
+  int buyStock(int amount) {
+    if (balance < amount) {
+      throw Exception("Your balance isn't enough");
+    } else {
+      int calculateTax = (amount * 0.01).floor();
+      balance -= (amount + calculateTax);
+      investedBalance = amount;
+      return balance;
+    }
+  }
+
+  int sellStock(int amount) {
+    if (investedBalance < amount) {
+      throw Exception("Your invested balance isn't enough");
+    } else {
+      int calculateTax = (amount * 0.01).floor();
+      investedBalance -= amount;
+      balance = balance + amount - calculateTax;
+      return balance;
+    }
+  }
 }
