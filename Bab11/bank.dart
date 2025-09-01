@@ -1,7 +1,7 @@
 void main(List<String> args) {
   var yasuoGA = GeneralAccount(
     accountName: "yasuo",
-    accountId: "yasuo090",
+    accountId: "yasuo070",
     accountType: AccountType.general,
     balance: 900000,
     openingDate: DateTime(2024, 8, 21),
@@ -9,7 +9,7 @@ void main(List<String> args) {
 
   var yasuoSA = SavingAccount(
     accountName: "yasuo",
-    accountId: "yasuo090",
+    accountId: "yasuo070",
     accountType: AccountType.saving,
     balance: 1000000,
     openingDate: DateTime(2024, 8, 21),
@@ -17,7 +17,7 @@ void main(List<String> args) {
 
   var yasuoIA = InvestAccount(
     accountName: "yasuo",
-    accountId: "yasuo090",
+    accountId: "yasuo070",
     accountType: AccountType.invest,
     balance: 1000000,
     openingDate: DateTime.now(),
